@@ -3,7 +3,7 @@ const sass = require( 'gulp-sass' );
 const autoprefixer = require( 'gulp-autoprefixer' );
 const cssmin = require( 'gulp-cssmin' );
 const rename = require( 'gulp-rename' );
-const ghPages = require( 'gulp-gh-pages' );
+const ghPages = require( 'gh-pages' );
 const concat = require( 'gulp-concat' );
 
 const path = {
@@ -22,7 +22,6 @@ const path = {
         images: 'src/images/**'
     }
 }
-
 
 gulp.task( 'sass', function() {
     return gulp.src(path.src.scss)
