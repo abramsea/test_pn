@@ -15,7 +15,8 @@ const app = new Vue({
 				number: 'кв. 62',
 				rooms: '1 комн. кв.',
 				added: '21/11/2020',
-				image: '/images/apartment.jpg'
+				image: './images/apartment.jpg',
+				shown: true
 			},
 			id2: {
 				id: 2,
@@ -30,7 +31,8 @@ const app = new Vue({
 				number: 'кв. 62',
 				rooms: '1 комн. кв.',
 				added: '21/11/2020',
-				image: '/images/apartment.jpg'
+				image: './images/apartment.jpg',
+				shown: true
 			},
 			id3: {
 				id: 3,
@@ -43,7 +45,8 @@ const app = new Vue({
 				square: 15,
 				number: '№ 7-10-2 (ПИБ №68)',
 				added: '21/11/2020',
-				image: '/images/apartment.jpg'
+				image: './images/apartment.jpg',
+				shown: true
 			},
 			id4: {
 				id: 4,
@@ -56,8 +59,35 @@ const app = new Vue({
 				square: 15,
 				number: '№ 7-10-2 (ПИБ №68)',
 				added: '21/11/2020',
-				image: '/images/apartment.jpg'
+				image: './images/apartment.jpg',
+				shown: true
 			}
 		}
 	}
 })
+
+const spaceNumber = ( num ) => {
+	if ( num > 999 )
+	{
+		num += '';
+
+		num = num
+			.split( '' )
+			.reverse()
+			.join( '' )
+			.replace( /\d{3}/g, '$& ' )
+			.split( '' ).reverse().join( '' )
+			.replace( /^ /, '' );
+	}
+
+	return num;
+};
+
+const prices = document.querySelectorAll( 'span.card__price' );
+
+if ( prices.length )
+{
+	prices.forEach( ( price ) => price.textContent = spaceNumber( parseInt( price.textContent )));
+}
+
+
