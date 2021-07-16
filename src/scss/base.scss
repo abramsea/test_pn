@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+@import 'variables';
+
+* 
+{
+    box-sizing: border-box;
+    
+    padding: 0;
+    margin: 0;
+}
+
+html 
+{
+    overflow-x: hidden;
+    
+    font-family: $pt_sans;
+
+    scroll-behavior: smooth;
+}
+
+body
+{
+    overflow: hidden;
+
+    background: $bg_light_gray;
+}
