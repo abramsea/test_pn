@@ -16,11 +16,95 @@
 <body> 
     <main>
         <section class="cart" id="cart">
+            <form>
+                <label for="search">
+                    Введите ЖК / корпус / № квартиры / № паркинга
+                </label>
+                <input id="search" name="search" type="text">
+                <select multiple name="filters">
+                    <option value="booked">Забронировано</option>
+                    <option value="sold">Продано</option>
+                    <option value="active">Активно</option>
+                </select>
+                <button type="button">
+                    Очистить корзину
+                </button>
+                <input type="checkbox">
+                    Все
+                </input>
+            </form>
+            <div class="buttons">
+                <button class="button button_type_pdf">
+                    Сохранить
+                </button>
+                <button class="button button_type_share">
+                    Отправить
+                </button>
+                <button class="button button_type_remove">
+                    Удалить
+                </button>
+            </div>
+            
             <ul class="cards">
-                <li v-for="apartment in apartments">
-                    <h2>
-                        {{ apartment.status }}
-                    </h2>
+                <li v-for="apartment in apartments" class="card">
+
+                    <input type="button" checked></input>
+
+                    <div class="card__main-info">
+                        <span class="card__price">
+                            {{ apartment.price }}&nbsp;руб.
+                        </span>
+                        <span class="card__type">
+                            {{ apartment.type }}
+                        </span>
+                        <p class="card__complex">
+                            {{ apartment.complex }}<span class="card__queue">, {{ apartment.queue }}</span>
+                        </p>
+                    </div>
+
+                    <div class="card__props">
+                        <span class="card__prop">
+                            {{ apartment.number }}
+                            <span v-if="apartment.rooms" class="card__rooms">
+                                {{ apartment.rooms }}
+                            </span>
+                        </span>
+                        <span class="card__prop">
+                            {{ apartment.square }}&nbsp;м²
+                            <span v-if="apartment.floor" class="card__floor">
+                                {{ apartment.floor }}&nbsp;этаж
+                            </span>
+                        </span>
+                    </div>
+
+                    <p class="card__location">
+                        {{ apartment.location }}
+                    </p>
+                    
+                    <span class="card__status card__status_type_entity" v-if="apartment.status === 'entity'">
+                        Переуступка от юр.лица
+                    </span>
+
+                    <span class="card__status card__status_type_person" v-if="apartment.status === 'person'">
+                        Переуступка от физ.лица
+                    </span>
+
+                    <span class="card__status card__status_type_booked" v-if="apartment.status === 'booked'">
+                        Забронировано
+                    </span>
+
+                    <span class="card__status card__status_type_sold" v-if="apartment.status === 'sold'">
+                        Продано
+                    </span>
+
+                    <span class="card__added">
+                        {{ apartment.added }}
+                    </span>
+
+                    <picture>
+                        <img :src="apartment.image" :alt="apartment.number">
+                    </picture>
+
                 </li>
             </ul>
         </section>
