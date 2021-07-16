@@ -3,6 +3,7 @@
 @import 'variables';
 @import 'fonts';
 @import 'cart';
+@import 'cards';
 
 * 
 {
@@ -25,5 +26,12 @@ body
 {
     overflow: hidden;
 
-    background: $bg_light_gray;
+    background: $clr_bg_light_gray;
+}
+
+main
+{
+    max-width: 1200px;
+
+    margin: 0 auto;
 }

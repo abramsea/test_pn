@@ -1,9 +1,6 @@
-@import 'variables';
-
 @font-face {
     font-family: 'PT Sans';
-    src: url('PTSans-Regular.woff2') format('woff2'),
-        url('PTSans-Regular.woff') format('woff');
+    src: url('../fonts/PTSans-Regular.woff') format('woff');
     font-weight: $regular;
     font-style: normal;
     font-display: swap;
@@ -11,10 +8,20 @@
 
 @font-face {
     font-family: 'PT Sans';
-    src: url('PTSans-Bold.woff2') format('woff2'),
-        url('PTSans-Bold.woff') format('woff');
+    src: url('../fonts/PTSans-Bold.woff') format('woff');
     font-weight: $bold;
     font-style: normal;
     font-display: swap;
 }
 
+@mixin font_p1 {
+    font-size: 14px;
+    line-height: calc( 21 / 14);
+}
+
+@mixin font_price {
+    font-size: 15px;
+    line-height: calc( 20 / 15);
+
+    font-weight: $bold;
+}

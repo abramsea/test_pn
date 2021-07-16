@@ -48,11 +48,11 @@
             <ul class="cards">
                 <li v-for="apartment in apartments" class="card">
 
-                    <input type="button" checked></input>
+                    <input type="checkbox" checked></input>
 
                     <div class="card__main-info">
                         <span class="card__price">
-                            {{ apartment.price }}&nbsp;руб.
+                            {{ apartment.price }}
                         </span>
                         <span class="card__type">
                             {{ apartment.type }}
@@ -98,10 +98,10 @@
                     </span>
 
                     <span class="card__added">
-                        {{ apartment.added }}
+                       Добавлено {{ apartment.added }}
                     </span>
 
-                    <picture>
+                    <picture class="card__plan">
                         <img :src="apartment.image" :alt="apartment.number">
                     </picture>
 

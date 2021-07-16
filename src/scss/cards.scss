@@ -1,0 +1,84 @@
+ul.cards
+{
+	display: flex;
+	flex-wrap: wrap;
+
+	list-style: none;
+
+	li.card
+	{
+		@include font_p1;
+
+		position: relative;
+
+		flex-shrink: 0;
+
+		width: calc( 50% - 12px );
+		height: 238px;
+		padding: calc( #{$unit} * 6 ) calc( #{$unit} * 49 ) calc( #{$unit} * 6 ) calc( #{$unit} * 16 );
+		margin-right: calc( #{$unit} * 6 );
+		margin-top: calc( #{$unit} * 6 );
+
+		background: $clr_white;
+
+		border: 1px solid $clr_gray;
+
+		&:nth-child(2n)
+		{
+			margin-right: 0;
+		}
+
+		&:nth-child( -n + 2 )
+		{
+			margin-top: 0;
+		}
+
+		input[type="checkbox"]
+		{
+			position: absolute;
+			top: 50%;
+			left: 28px;
+
+			transform: translate( 0, -50% );
+		}
+
+		span.card__price
+		{
+			@include font_price;
+
+			color: $clr_red;
+
+			&::after
+			{
+				content: ' руб.';
+			}
+		}
+
+		span.card__queue
+		{
+			color: $clr_dark_gray;
+		}
+
+		picture.card__plan
+		{
+			position: absolute;
+			top: 78px;
+			right: 24px;
+
+			display: block;
+
+			width: 128px;
+			height: 98px;
+
+			img
+			{
+				display: block;
+
+				width: 100%;
+				height: 100%;
+
+				object-fit: contain;
+			}
+		}
+	}
+}
