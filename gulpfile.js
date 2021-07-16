@@ -3,7 +3,7 @@ const sass = require( 'gulp-sass' );
 const autoprefixer = require( 'gulp-autoprefixer' );
 const cssmin = require( 'gulp-cssmin' );
 const rename = require( 'gulp-rename' );
-const ghPages = require( 'gh-pages' );
+const ghPages = require( 'gulp-gh-pages' );
 const concat = require( 'gulp-concat' );
 
 const path = {
