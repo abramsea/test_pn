@@ -54,20 +54,26 @@
 		{
 			margin-top: calc( #{$unit} * 8 );
 		}
-	}
 
-	ul.buttons
-	{
-		display: flex;
-
-		margin-top: calc( #{$unit} * 8 );
-		margin-left: calc( #{$unit} * 3 );
-		
-		li
+		button.button_type_clean
 		{
-			&:not(:last-child)
+			margin-left: calc( #{$unit} * 2.5 );
+			padding-right: calc( #{$unit} * 8 );
+		}
+
+		ul.buttons
+		{
+			display: flex;
+
+			margin-top: calc( #{$unit} * 8 );
+			margin-left: calc( #{$unit} * 3 );
+			
+			li
 			{
-				margin-right: calc( #{$unit} * 2.5 );
+				&:not(:last-child)
+				{
+					margin-right: calc( #{$unit} * 2.5 );
+				}
 			}
 		}
 	}

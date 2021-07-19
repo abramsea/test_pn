@@ -7,6 +7,24 @@
 	min-width: 190px;
 	margin-left: calc( #{$unit} * 2.5 );
 
+	cursor: pointer;
+
+	&.active
+	{
+		div.dropdown
+		{
+			display: flex;
+		}
+
+		div.wrap
+		{
+			&::after
+			{
+				transform: none;
+			}
+		}
+	}
+
 	div.wrap
 	{
 		div.value
@@ -36,7 +54,13 @@
 			width: 24px;
 			height: 24px;
 
-			content: url(../images/icons/arrow.svg);
+			content: '';
+
+			background: url(../images/icons/arrow.svg) center no-repeat;
+
+			transform: rotate( 180deg );
+
+			transition: transform $t $tf;
 		}
 	}
 
@@ -45,8 +69,10 @@
 		position: absolute;
 		z-index: 2;
 		
-		display: flex;
+		display: none;
 		flex-direction: column;
+
+		margin-top: 6px;
 
 		background: $clr_white;
 

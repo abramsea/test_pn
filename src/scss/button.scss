@@ -22,7 +22,7 @@
     {
         position: absolute;
         top: 6px;
-        right: 12px;
+        right: 10px;
 
 
         display: block;
@@ -67,8 +67,6 @@
 
     &_type_clean
     {
-		padding-right: calc( #{$unit} * 8 );
-
         &::after
         {
             content: url(../images/icons/x.svg);
