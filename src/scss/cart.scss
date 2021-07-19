@@ -33,6 +33,8 @@
 
 				padding: calc( #{$unit} * 3 ) calc( #{$unit} * 3 ) calc( #{$unit} * 2.5 ) calc( #{$unit} * 12 );
 
+				background: $clr_white;
+
 				border: 1px solid $clr_icons_gray;
 
 				&:focus
@@ -47,6 +49,11 @@
 				}
 			}
 		}	
+
+		label.checkbox_type_all
+		{
+			margin-top: calc( #{$unit} * 8 );
+		}
 	}
 
 	ul.buttons
@@ -54,6 +61,7 @@
 		display: flex;
 
 		margin-top: calc( #{$unit} * 8 );
+		margin-left: calc( #{$unit} * 3 );
 		
 		li
 		{

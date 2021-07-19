@@ -1,0 +1,61 @@
+.checkboxset
+{
+	@include font_p1;
+
+	position: relative;
+
+	min-width: 190px;
+	margin-left: calc( #{$unit} * 2.5 );
+
+	div.wrap
+	{
+		div.value
+		{
+			padding: calc( #{$unit} * 3 ) calc( #{$unit} * 8 ) calc( #{$unit} * 2.5 ) calc( #{$unit} * 3 );
+
+			background: $clr_white;
+
+			border: 1px solid $clr_icons_gray;
+
+			&::after
+			{
+				content: attr(data-title);
+			}
+		}
+
+		&::after
+		{
+			position: absolute;
+			top: 10px;
+			right: 8px;
+
+			display: flex;
+			align-items: center;
+			justify-content: center;
+
+			width: 24px;
+			height: 24px;
+
+			content: url(../images/icons/arrow.svg);
+		}
+	}
+
+	div.dropdown
+	{
+		position: absolute;
+		z-index: 2;
+		
+		display: flex;
+		flex-direction: column;
+
+		background: $clr_white;
+
+		box-shadow: 0px 20px 25px -5px rgba(26, 32, 44, 0.1), 0px 10px 10px -5px rgba(26, 32, 44, 0.04);
+
+		.inner
+		{
+			padding: calc( #{$unit} * 5 );
+		}
+	}
+
+}

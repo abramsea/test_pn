@@ -21,31 +21,22 @@
                     <input id="search" name="search" placeholder="Введите ЖК / корпус / № квартиры / № паркинга" type="text">
                 </div>
 
-                <div class="field room-block checkboxset" data-prefix="" data-postfix=" комн." data-type="rooms">
+                <div class="checkboxset">
 					<div class="wrap">
-						<div class="value" data-title="Комнатность"></div>
-						<div class="arrw"></div>
+						<div class="value" data-title="Все статусы"></div>
 					</div>
 					<div class="dropdown">
 						<div class="inner">
-							<label class="checkbox-standart">
-                                <input id="flat_studio" data-title="С" name="NewSearchFormFull[flat_studio]" value="1" type="checkbox">
-                                <span class="check"></span>
-                                <span class="val">Все статусы</span>
-                            </label>
-							<label class="checkbox-standart">
-                                <input id="flat_room_1" name="NewSearchFormFull[flat_room_1]" value="1" type="checkbox">
-                                <span class="check"></span>
+                            <input id="booked" value="booked" type="checkbox">
+							<label for="booked" class="checkbox">
                                 <span class="val">Забронировано</span>
                             </label>
-							<label class="checkbox-standart">
-                                <input id="flat_room_2" name="NewSearchFormFull[flat_room_2]" value="1" type="checkbox">
-                                <span class="check"></span>
+                            <input id="sold" value="sold" type="checkbox">
+							<label for="sold" class="checkbox">
                                 <span class="val">Продано</span>
                             </label>
-							<label class="checkbox-standart">
-                                <input id="flat_room_3" name="NewSearchFormFull[flat_room_3]" value="1" type="checkbox">
-                                <span class="check"></span>
+                            <input id="active" value="active" type="checkbox">
+							<label for="active" class="checkbox">
                                 <span class="val">Активно</span>
                             </label>
 						</div>
@@ -55,9 +46,10 @@
                 <button type="button" class="button button_type_clean">
                     Очистить корзину
                 </button>
-                <input type="checkbox">
-                    Все
-                </input>
+                <input id="all" value="all" type="checkbox">
+                <label for="all" class="checkbox checkbox_type_all">
+                    <span class="val">все</span>
+                </label>
                 <ul class="buttons">
                     <li>
                         <button type="button" class="button button_type_pdf">
@@ -80,7 +72,8 @@
             <ul class="cards">
                 <li v-for="apartment in apartments" class="card">
 
-                    <input type="checkbox"></input>
+                    <input :id="apartment.id" :value="apartment.id" type="checkbox">
+                    <label :for="apartment.id" class="checkbox"></label>
 
                     <div class="card__main-info">
                         <span class="card__price">

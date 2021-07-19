@@ -1,0 +1,42 @@
+input[type="checkbox"] 
+{
+	position: absolute;
+	z-index: -1;
+	
+	opacity: 0;
+}
+
+input[type="checkbox"]:checked + label::before
+{
+	background-color: $clr_checkbox_yellow;
+	background-image: url(../images/icons/check.svg);
+	background-position: center;
+	background-repeat: no-repeat;
+
+	border-color: $clr_icons_gray;
+}
+
+label
+{
+	display: inline-flex;
+	align-items: center;
+	user-select: none;
+
+	cursor: pointer;
+	
+	&::before 
+	{
+		display: inline-block;
+
+		width: 16px;
+		height: 16px;
+
+		margin-right: calc( #{$unit} * 4 );
+
+		content: '';
+
+		background: $clr_white;
+
+		border: 1px solid $clr_icons_gray;
+	}
+}

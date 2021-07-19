@@ -7,7 +7,7 @@
     display: flex;
     align-items: center;
 
-    padding: calc( #{$unit} * 2 ) calc( #{$unit} * 11 ) calc( #{$unit} * 2 ) calc( #{$unit} * 3 );
+    padding: calc( #{$unit} * 2 ) calc( #{$unit} * 10 ) calc( #{$unit} * 2 ) calc( #{$unit} * 3 );
 
     background: $clr_gray;
 
@@ -67,6 +67,8 @@
 
     &_type_clean
     {
+		padding-right: calc( #{$unit} * 8 );
+
         &::after
         {
             content: url(../images/icons/x.svg);

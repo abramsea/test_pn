@@ -33,7 +33,7 @@ ul.cards
 			margin-top: 0;
 		}
 
-		input[type="checkbox"]
+		label.checkbox
 		{
 			position: absolute;
 			top: 50%;
@@ -92,6 +92,11 @@ ul.cards
 					content: url(../images/icons/car.svg);
 				}
 			}
+		}
+
+		p.card__complex
+		{
+			margin-top: calc( #{$unit} * 1.5 );
 		}
 
 		span.card__queue
