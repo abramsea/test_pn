@@ -86,11 +86,17 @@
                         <span class="card__price">
                             {{ apartment.price }}
                         </span>
-                        <span class="card__type">
-                            {{ apartment.type }}
+
+                        <span class="card__type card__type_apartment" v-if="apartment.type === 'apartment'">
+                            Квартира
                         </span>
+
+                        <span class="card__type card__type_parking" v-if="apartment.type === 'parking'">
+                            Паркинг
+                        </span>
+
                         <p class="card__complex">
-                            {{ apartment.complex }}<span class="card__queue">, {{ apartment.queue }}</span>
+                            {{ apartment.complex }}, <span class="card__queue">{{ apartment.queue }}</span>
                         </p>
                     </div>
 
@@ -114,11 +120,11 @@
                     </p>
                     
                     <span class="card__status card__status_type_entity" v-if="apartment.status === 'entity'">
-                        Переуступка от юр.лица
+                        Уступка от юр.лица
                     </span>
 
                     <span class="card__status card__status_type_person" v-if="apartment.status === 'person'">
-                        Переуступка от физ.лица
+                        Уступка от физ.лица
                     </span>
 
                     <span class="card__status card__status_type_booked" v-if="apartment.status === 'booked'">
