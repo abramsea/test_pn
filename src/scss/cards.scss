@@ -106,6 +106,27 @@ ul.cards
 			color: $clr_dark_gray;
 		}
 
+		.card__props
+		{
+			display: flex;
+
+			.card__prop
+			{
+				display: flex;
+				flex-direction: column;
+
+				padding-right: calc( #{$unit} * 5 );
+
+				&:not(:first-child)
+				{
+					padding-left: calc( #{$unit} * 5 );
+					padding-right: 0;
+
+					border-left: 1px solid $clr_dark_gray;
+				}
+			}
+		}
+
 		span.card__status
 		{
 			@include font_p1;

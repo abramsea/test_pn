@@ -61,6 +61,15 @@ const initRemoveBtn = () => {
 	removeBtn.addEventListener( 'click', removeCheckedCards ); 
 }
 
+const initFilterCards = () => {
+	const checkboxes = document.querySelectorAll( 'div.inner > input[type="checkbox"]' );
+
+	checkboxes.forEach( ( input ) => {
+		
+	});
+
+}
+
 initCheckboxset();
 initCleanBtn();
 initAllBtn();
