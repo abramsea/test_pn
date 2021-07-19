@@ -3,7 +3,7 @@ ul.cards
 	display: flex;
 	flex-wrap: wrap;
 
-	list-style: none;
+	margin-top: calc( #{$unit} * 5 );
 
 	li.card
 	{
@@ -44,9 +44,7 @@ ul.cards
 
 		span.card__price
 		{
-			@include font_price;
-
-			color: $clr_red;
+			@include font_price( $clr_red );
 
 			&::after
 			{

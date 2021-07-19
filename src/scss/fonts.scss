@@ -14,14 +14,25 @@
     font-display: swap;
 }
 
-@mixin font_p1 {
+@mixin font_p1( $clr: $clr_black ) {
     font-size: 14px;
     line-height: calc( 21 / 14);
+
+    color: $clr;
 }
 
-@mixin font_price {
+@mixin font_button( $clr: $clr_black ) {
+    font-size: 13px;
+    line-height: calc( 20 / 13);
+
+    color: $clr;
+}
+
+@mixin font_price( $clr: $clr_black ) {
     font-size: 15px;
     line-height: calc( 20 / 15);
+
+    color: $clr;
 
     font-weight: $bold;
 }

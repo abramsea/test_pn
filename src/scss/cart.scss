@@ -1,4 +1,65 @@
 .cart
 {
-	
+	margin-top: calc( #{$unit} * 22 );
+
+	.form
+	{
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+
+		.form__item
+		{
+			position: relative;
+
+			&::before
+			{
+				position: absolute;
+				top: 10px;
+				left: 8px;
+
+				width: 24px;
+				height: 24px;
+
+				content: url(../images/icons/search.svg);
+			}
+
+			input#search
+			{
+				@include font_p1;
+
+				width: 637px;
+
+				padding: calc( #{$unit} * 3 ) calc( #{$unit} * 3 ) calc( #{$unit} * 2.5 ) calc( #{$unit} * 12 );
+
+				border: 1px solid $clr_icons_gray;
+
+				&:focus
+				{
+					outline: none;
+					border: 1px solid $clr_red;
+				}
+
+				&::placeholder
+				{
+					color: $clr_dark_gray;
+				}
+			}
+		}	
+	}
+
+	ul.buttons
+	{
+		display: flex;
+
+		margin-top: calc( #{$unit} * 8 );
+		
+		li
+		{
+			&:not(:last-child)
+			{
+				margin-right: calc( #{$unit} * 2.5 );
+			}
+		}
+	}
 }
