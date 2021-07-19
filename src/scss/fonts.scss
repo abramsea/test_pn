@@ -36,3 +36,10 @@
 
     font-weight: $bold;
 }
+
+@mixin font_label( $clr: $clr_black ) {
+    font-size: 12px;
+    line-height: calc( 16 / 12);
+
+    color: $clr;
+}

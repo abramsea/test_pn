@@ -10,6 +10,8 @@ $clr_gray: #e5e5e5;
 $clr_icons_gray: #c4c4c4;
 $clr_dark_gray: #cccccc;
 $clr_darkest_gray: #808080;
+$clr_light_gray: #ededed;
+$clr_label_gray: #686868;
 
 $clr_red: #ff0d29;
 $clr_light_red: #ffe4e4;
@@ -29,3 +31,7 @@ $pt_sans: 'PT Sans', Arial, Helvetica, sans-serif;
 $unit: 4px;
 $regular: 400;
 $bold: 700;
+
+// transition
+$t: 0.2s;
+$tf: ease-in-out;

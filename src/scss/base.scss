@@ -4,6 +4,7 @@
 @import 'fonts';
 @import 'cart';
 @import 'cards';
+@import 'button';
 
 * 
 {
@@ -31,7 +32,7 @@ body
 
 main
 {
-    max-width: 1200px;
+    max-width: 1000px;
 
     margin: 0 auto;
 }
@@ -43,67 +44,5 @@ ol, ul
     li
     {
         padding: 0;
-    }
-}
-
-.button
-{
-    @include font_button;
-
-    position: relative;
-
-    display: flex;
-    align-items: center;
-
-    padding: calc( #{$unit} * 2 ) calc( #{$unit} * 11 ) calc( #{$unit} * 2 ) calc( #{$unit} * 3 );
-
-    background: $clr_gray;
-
-    border: none;
-    border-radius: 0;
-
-    &::after
-    {
-        position: absolute;
-        top: 6px;
-        right: 12px;
-
-
-        display: block;
-
-        width: 24px;
-        height: 24px;
-    }
-
-    &_type_pdf
-    {
-        &::after
-        {
-            content: url(../images/icons/pdf.svg);
-        }        
-    }
-
-    &_type_share
-    {
-        &::after
-        {
-            content: url(../images/icons/send.svg);
-        }        
-    }
-
-    &_type_remove
-    {
-        &::after
-        {
-            content: url(../images/icons/bin.svg);
-        }        
-    }
-
-    &_type_clean
-    {
-        &::after
-        {
-            content: url(../images/icons/x.svg);
-        }        
     }
 }

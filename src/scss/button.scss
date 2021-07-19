@@ -1,0 +1,75 @@
+.button
+{
+    @include font_button;
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    padding: calc( #{$unit} * 2 ) calc( #{$unit} * 11 ) calc( #{$unit} * 2 ) calc( #{$unit} * 3 );
+
+    background: $clr_gray;
+
+    cursor: pointer;
+
+    border: none;
+    border-radius: 0;
+
+    transition: background-color $t $tf;
+
+    &::after
+    {
+        position: absolute;
+        top: 6px;
+        right: 12px;
+
+
+        display: block;
+
+        width: 24px;
+        height: 24px;
+    }
+
+    &:focus
+    {
+        outline: 1px solid $clr_red;
+    }
+
+    &:hover
+    {
+        background: $clr_dark_gray;
+    }
+
+    &_type_pdf
+    {
+        &::after
+        {
+            content: url(../images/icons/pdf.svg);
+        }        
+    }
+
+    &_type_share
+    {
+        &::after
+        {
+            content: url(../images/icons/send.svg);
+        }        
+    }
+
+    &_type_remove
+    {
+        &::after
+        {
+            content: url(../images/icons/bin.svg);
+        }        
+    }
+
+    &_type_clean
+    {
+        &::after
+        {
+            content: url(../images/icons/x.svg);
+        }        
+    }
+}
