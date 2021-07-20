@@ -116,8 +116,6 @@ const initSearch = () => {
 				card.classList.add( 'valid' );
 			}
 		});
-
-		console.log( searchInput.value );
 	}
 
 	searchInput.addEventListener( 'keyup', filter );
