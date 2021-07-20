@@ -4,9 +4,9 @@
 ---
 
 Приветствую! в данном репозитории находится тестовое задание.
-Использован сборщик gulp.
+Использован сборщик gulp
 Использован фреймворк vue.js
-Использована библиотека likely.
+Использован препроцессор sass
 
 _version 1.0_
 
@@ -16,21 +16,21 @@ _version 1.0_
 
 ### Зависимости
 
-    "dependencies": {
-        "autoprefixer": "^10.0.1",
-        "gulp": "^4.0.2",
-        "gulp-concat": "^2.6.1",
-        "gulp-rename": "^2.0.0",
-        "gulp-sass": "^4.1.0",
-        "postcss": "^8.1.2"
-    }
+  "dependencies": {
+    "autoprefixer": "^10.0.1",
+    "gulp": "^4.0.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-rename": "^2.0.0",
+    "gulp-sass": "^4.1.0",
+    "postcss": "^8.3.5"
+  },
 
-    "devDependencies": {
-        "gulp-autoprefixer": "^7.0.1",
-        "gulp-babel": "^7.0.1",
-        "gulp-cssmin": "^0.2.0",
-        "gulp-gh-pages": "^0.5.4"
-    }
+  "devDependencies": {
+    "gulp-autoprefixer": "^7.0.1",
+    "gulp-babel": "^7.0.1",
+    "gulp-cssmin": "^0.2.0",
+    "gulp-gh-pages": "^0.5.4"
+  }
 
     
 ### Сборка

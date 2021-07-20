@@ -5,6 +5,12 @@ ul.cards
 
 	margin-top: calc( #{$unit} * 5 );
 
+	@media screen and (max-width: 1280px)
+	{
+		flex-direction: column;
+		align-items: center;
+	}
+
 	li.card
 	{
 		@include font_p1;
@@ -23,6 +29,36 @@ ul.cards
 
 		border: 1px solid $clr_gray;
 
+		@media screen and (max-width: 1280px)
+		{
+			width: 488px;
+			margin-right: 0;
+		}
+
+		@media screen and (max-width: 636px)
+		{
+			width: 100%;
+			height: auto;
+			padding: calc( #{$unit} * 16 ) calc( #{$unit} * 5 ) calc( #{$unit} * 6 ) calc( #{$unit} * 5 );
+		}
+
+		@media print
+		{
+			display: none;
+		
+			&.printable
+			{
+				display: block;
+				width: 100%;
+				margin: 0;
+			}
+		}
+
+		&:not(.valid)
+		{
+			display: none;
+		}
+
 		&:nth-child(2n)
 		{
 			margin-right: 0;
@@ -31,6 +67,19 @@ ul.cards
 		&:nth-child( -n + 2 )
 		{
 			margin-top: 0;
+
+			@media screen and (max-width: 1280px)
+			{
+				margin-top: calc( #{$unit} * 6 );
+			}
+		}
+
+		&:first-child
+		{
+			@media screen and (max-width: 1280px)
+			{
+				margin-top: 0;
+			}
 		}
 
 		label.checkbox
@@ -40,6 +89,14 @@ ul.cards
 			left: 28px;
 
 			transform: translate( 0, -50% );
+
+			@media screen and (max-width: 636px)
+			{
+				top: 20px;
+				left: 20px;
+
+				transform: none;
+			}
 		}
 
 		span.card__price
@@ -67,6 +124,10 @@ ul.cards
 
 			box-shadow: 0px 0px 2px rgba(94, 119, 157, 0.25);
 
+			cursor: default;
+
+			user-select: none;
+
 			&::before
 			{
 				position: absolute;
@@ -75,6 +136,14 @@ ul.cards
 
 				width: 14px;
 				height: 14px;
+			}
+
+			&:hover
+			{
+				span.tooltip
+				{
+					opacity: 1;
+				}
 			}
 
 			&_apartment
@@ -90,6 +159,49 @@ ul.cards
 				&::before
 				{
 					content: url(../images/icons/car.svg);
+				}
+			}
+
+			span.tooltip
+			{
+				@include font_button( $clr_white );
+
+				position: absolute;
+				top: calc(100% + 16px);
+				left: 28px;
+				z-index: 3;
+
+				display: block;
+
+				opacity: 0;
+
+				width: 250px;
+				padding: calc( #{$unit} * 3 ) calc( #{$unit} * 5 );
+
+				background: $clr_tooltip;
+
+				box-shadow: 0px 8px 30px -3px rgba(26, 32, 44, 0.1), 0px 4px 6px -2px rgba(26, 32, 44, 0.05);
+
+				transition: opacity $t $tf;
+
+				&::before
+				{
+					position: absolute;
+					top: -22px;
+					left: 12px;
+
+					width: 0;
+					height: 0;
+
+					content: '';
+
+					border: 12px solid transparent;
+					border-bottom: 10px solid $clr_tooltip;
+				}
+				
+				&:hover
+				{
+					opacity: 0;
 				}
 			}
 		}
@@ -137,6 +249,15 @@ ul.cards
 			right: 0;
 
 			padding: calc( #{$unit} * 1.5 ) calc( #{$unit} * 2.5 ) calc( #{$unit} * 1.5 ) calc( #{$unit} * 6 );
+
+			cursor: default;
+
+			user-select: none;
+
+			@media screen and (max-width: 636px)
+			{
+				top: 12px;
+			}
 
 			&::before
 			{
@@ -218,6 +339,16 @@ ul.cards
 
 			max-width: 244px;
 
+			@media screen and (max-width: 636px)
+			{
+				position: relative;
+				top: 0;
+				left: 0;
+
+				max-width: 100%;
+				margin-top: calc( #{$unit} * 3 );
+			}
+
 			&::before
 			{
 				position: absolute;
@@ -251,6 +382,13 @@ ul.cards
 
 			width: 128px;
 			height: 98px;
+
+			@media screen and (max-width: 636px)
+			{
+				position: static;
+
+				margin-top: calc( #{$unit} * 3 );
+			}
 
 			img
 			{

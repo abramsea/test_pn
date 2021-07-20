@@ -16,7 +16,8 @@ const app = new Vue({
 				rooms: '1 комн. кв.',
 				added: '21/11/2020',
 				image: './images/apartment.jpg',
-				shown: true
+				enabled: true,
+				active: 'active'
 			},
 			id2: {
 				id: 2,
@@ -32,7 +33,8 @@ const app = new Vue({
 				rooms: '1 комн. кв.',
 				added: '21/11/2020',
 				image: './images/apartment.jpg',
-				shown: true
+				enabled: true,
+				active: 'active'
 			},
 			id3: {
 				id: 3,
@@ -41,16 +43,17 @@ const app = new Vue({
 				status: 'booked',
 				complex: 'Зеленый квартал на Пулковских высотах',
 				queue: 'корпус 10, III кв. 2022 г.',
-				location: 'Лен. область, Всеволожский район, д. Кудрово, ул. Столичная, д. 5, к. 1',
+				location: 'Ленинградская область, Всеволожский район, д. Кудрово, ул. Столичная, д. 5, к. 1',
 				square: 15,
 				number: '№ 7-10-2 (ПИБ №68)',
 				added: '21/11/2020',
 				image: './images/apartment.jpg',
-				shown: true
+				enabled: true
 			},
 			id4: {
 				id: 4,
 				type: 'parking',
+				tooltip: 'Подземная встроенно-пристроенная',
 				price: 800300,
 				status: 'sold',
 				complex: 'Зеленый квартал на Пулковских высотах',
@@ -60,33 +63,8 @@ const app = new Vue({
 				number: '№ 7-10-2 (ПИБ №68)',
 				added: '21/11/2020',
 				image: './images/apartment.jpg',
-				shown: true
+				enabled: true
 			}
 		}
 	}
 })
-
-const spaceNumber = ( num ) => {
-	if ( num > 999 )
-	{
-		num += '';
-
-		num = num
-			.split( '' )
-			.reverse()
-			.join( '' )
-			.replace( /\d{3}/g, '$& ' )
-			.split( '' ).reverse().join( '' )
-			.replace( /^ /, '' );
-	}
-
-	return num;
-};
-
-const prices = document.querySelectorAll( 'span.card__price' );
-
-if ( prices.length )
-{
-	prices.forEach( ( price ) => price.textContent = spaceNumber( parseInt( price.textContent )));
-}
-

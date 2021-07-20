@@ -70,7 +70,7 @@
             </form>
 
             <ul class="cards">
-                <li v-for="apartment in apartments" class="card">
+                <li class="card valid" v-for="apartment in apartments" v-if="apartment.enabled">
 
                     <input :id="apartment.id" :value="apartment.id" type="checkbox">
                     <label :for="apartment.id" class="checkbox"></label>
@@ -80,21 +80,26 @@
                             {{ apartment.price }}
                         </span>
 
-                        <span class="card__type card__type_apartment" v-if="apartment.type === 'apartment'">
+                        <span class="card__type card__type_apartment" v-if="apartment.type === 'apartment'" data-type="Квартира">
                             Квартира
                         </span>
 
-                        <span class="card__type card__type_parking" v-if="apartment.type === 'parking'">
+                        <span class="card__type card__type_parking" v-if="apartment.type === 'parking'" data-type="Паркинг">
                             Паркинг
+                            <span v-if="apartment.tooltip" class="tooltip">
+                                {{ apartment.tooltip }}
+                            </span>
                         </span>
 
-                        <p class="card__complex">
+
+
+                        <p class="card__complex" :data-complex="apartment.complex">
                             {{ apartment.complex }}, <span class="card__queue">{{ apartment.queue }}</span>
                         </p>
                     </div>
 
                     <div class="card__props">
-                        <span class="card__prop">
+                        <span class="card__prop card__number" :data-number="apartment.number">
                             {{ apartment.number }}
                             <span v-if="apartment.rooms" class="card__rooms">
                                 {{ apartment.rooms }}
@@ -112,19 +117,19 @@
                         {{ apartment.location }}
                     </p>
                     
-                    <span class="card__status card__status_type_entity" v-if="apartment.status === 'entity'">
+                    <span class="card__status card__status_type_entity" v-if="apartment.status === 'entity'" :data-status="apartment.status" :data-active="apartment.active">
                         Уступка от юр.лица
                     </span>
 
-                    <span class="card__status card__status_type_person" v-if="apartment.status === 'person'">
+                    <span class="card__status card__status_type_person" v-if="apartment.status === 'person'" :data-status="apartment.status" :data-active="apartment.active">
                         Уступка от физ.лица
                     </span>
 
-                    <span class="card__status card__status_type_booked" v-if="apartment.status === 'booked'">
+                    <span class="card__status card__status_type_booked" v-if="apartment.status === 'booked'" :data-status="apartment.status" :data-active="apartment.active">
                         Забронировано
                     </span>
 
-                    <span class="card__status card__status_type_sold" v-if="apartment.status === 'sold'">
+                    <span class="card__status card__status_type_sold" v-if="apartment.status === 'sold'" :data-status="apartment.status" :data-active="apartment.active">
                         Продано
                     </span>
 
