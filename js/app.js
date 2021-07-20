@@ -16,7 +16,8 @@ const app = new Vue({
 				rooms: '1 комн. кв.',
 				added: '21/11/2020',
 				image: './images/apartment.jpg',
-				shown: true
+				enabled: true,
+				active: 'active'
 			},
 			id2: {
 				id: 2,
@@ -32,7 +33,8 @@ const app = new Vue({
 				rooms: '1 комн. кв.',
 				added: '21/11/2020',
 				image: './images/apartment.jpg',
-				shown: true
+				enabled: true,
+				active: 'active'
 			},
 			id3: {
 				id: 3,
@@ -41,16 +43,17 @@ const app = new Vue({
 				status: 'booked',
 				complex: 'Зеленый квартал на Пулковских высотах',
 				queue: 'корпус 10, III кв. 2022 г.',
-				location: 'Лен. область, Всеволожский район, д. Кудрово, ул. Столичная, д. 5, к. 1',
+				location: 'Ленинградская область, Всеволожский район, д. Кудрово, ул. Столичная, д. 5, к. 1',
 				square: 15,
 				number: '№ 7-10-2 (ПИБ №68)',
 				added: '21/11/2020',
 				image: './images/apartment.jpg',
-				shown: true
+				enabled: true
 			},
 			id4: {
 				id: 4,
 				type: 'parking',
+				tooltip: 'Подземная встроенно-пристроенная',
 				price: 800300,
 				status: 'sold',
 				complex: 'Зеленый квартал на Пулковских высотах',
@@ -60,39 +63,14 @@ const app = new Vue({
 				number: '№ 7-10-2 (ПИБ №68)',
 				added: '21/11/2020',
 				image: './images/apartment.jpg',
-				shown: true
+				enabled: true
 			}
 		}
 	}
 })
-
-const spaceNumber = ( num ) => {
-	if ( num > 999 )
-	{
-		num += '';
-
-		num = num
-			.split( '' )
-			.reverse()
-			.join( '' )
-			.replace( /\d{3}/g, '$& ' )
-			.split( '' ).reverse().join( '' )
-			.replace( /^ /, '' );
-	}
-
-	return num;
-};
-
-const prices = document.querySelectorAll( 'span.card__price' );
-
-if ( prices.length )
-{
-	prices.forEach( ( price ) => price.textContent = spaceNumber( parseInt( price.textContent )));
-}
-
-
 const cardsList = document.querySelector( 'ul.cards' );
 const cards = cardsList.querySelectorAll( 'li' );
+const prices = document.querySelectorAll( 'span.card__price' );
 
 const initCheckboxset = () => {
 	const checkboxsets = document.querySelectorAll( 'div.checkboxset' );
@@ -134,9 +112,7 @@ const initAllBtn = () => {
 				allChecked = false;
 			});
 		}
-
 	}
-
 	allBtn.addEventListener( 'click', checkAll ); 
 }
 
@@ -146,15 +122,158 @@ const initRemoveBtn = () => {
 	const removeCheckedCards = () => {
 		const checkedInputs = document.querySelectorAll( 'li.card > input[type="checkbox"]:checked' )
 
-		checkedInputs.forEach( ( input ) => {
-			input.closest( 'li.card' ).remove();
-		});
+		if ( checkedInputs.length ) 
+		{
+			checkedInputs.forEach( ( input ) => {
+				input.closest( 'li.card' ).remove();
+			});
+		}
+		else
+		{
+			alert( 'Выберите галочкой, что хотите удалить' )
+		}
 	}
 
 	removeBtn.addEventListener( 'click', removeCheckedCards ); 
+}
+
+const resetFilter = () => cards.forEach( card => card.classList.add( 'valid' ));
+
+const initFilterCheckboxes = () => {
+	const filterCheckboxes = document.querySelectorAll( 'div.inner > input[type="checkbox"]' );
+
+	filterCheckboxes.forEach( ( input ) => {
+
+		const filter = ( value ) => {
+			cards.forEach( ( card ) => {
+
+				card.classList.remove( 'valid' );
+
+				if ( card.querySelector( '.card__status' ).getAttribute( 'data-status' ) === value || 
+					card.querySelector( '.card__status' ).getAttribute( 'data-active' ) === value )
+				{
+					card.classList.add( 'valid' );
+				}
+			});
+		}
+		
+		input.addEventListener( 'change', ( evt ) => {
+			if ( input.checked )
+			{
+				filter( evt.target.getAttribute( 'value' ));
+			}
+			else
+			{
+				resetFilter();
+			}
+		});
+	});
+}
+
+const initSearch = () => {
+	const form = document.querySelector( 'form' );
+	const searchInput = form.querySelector( 'input#search' );
+
+	const filter = () => {
+		cards.forEach( ( card ) => {
+
+			card.classList.remove( 'valid' );
+
+			if ( card.querySelector( '.card__complex' ).textContent.toLowerCase().match( searchInput.value.toLowerCase() ) || 
+				 card.querySelector( '.card__queue' ).textContent.toLowerCase().match( searchInput.value.toLowerCase() ) || 
+				 card.querySelector( '.card__number' ).textContent.toLowerCase().match( searchInput.value.toLowerCase() ))
+			{
+				card.classList.add( 'valid' );
+			}
+		});
+
+		console.log( searchInput.value );
+	}
+
+	searchInput.addEventListener( 'keyup', filter );
+	form.addEventListener( 'submit', ( evt ) => {
+		evt.preventDefault();
+	} );
+}
+
+const initShareBtn = () => {
+	const shareBtn = document.querySelector( '.button_type_share' );
+
+	const share = () => {
+		const checkedInputs = document.querySelectorAll( 'li.card > input[type="checkbox"]:checked' );
+
+		if ( checkedInputs.length )
+		{
+			let links = [];
+
+			checkedInputs.forEach( ( input ) => {
+				links.push( `Обрати внимание: ${input.closest( 'li.card' ).querySelector( '.card__type' ).getAttribute( 'data-type' )} ${input.closest( 'li.card' ).querySelector( '.card__number' ).getAttribute( 'data-number' )} в ЖК ${input.closest( 'li.card' ).querySelector( '.card__complex' ).getAttribute( 'data-complex' )} за ${input.closest( 'li.card' ).querySelector( '.card__price' ).textContent} рублей`);
+			});
+	
+			const mailBody = links.join( ', ' );
+	
+			location = `mailto:someone@example.ru?subject=Гляди, что нашел!&body=${mailBody}`;
+		}
+		else
+		{
+			alert( 'Выберите галочкой, что хотите отправить' )
+		}
+	}
+
+	shareBtn.addEventListener( 'click', share );
+}
+
+const initPrintBtn = () => {
+	const printBtn = document.querySelector( '.button_type_pdf' );
+
+	const print = () => {
+		const checkedInputs = document.querySelectorAll( 'li.card > input[type="checkbox"]:checked' );
+
+		if ( checkedInputs.length )
+		{
+			checkedInputs.forEach( ( input ) => {
+				input.closest( 'li.card' ).classList.add( 'printable' );
+			});
+
+			window.print();
+		}
+		else
+		{
+			alert( 'Выберите галочкой, что хотите сохранить' )
+		}
+	}
+
+	printBtn.addEventListener( 'click', print );
+
+}
+
+const spaceNumber = ( num ) => {
+	if ( num > 999 )
+	{
+		num += '';
+
+		num = num
+			.split( '' )
+			.reverse()
+			.join( '' )
+			.replace( /\d{3}/g, '$& ' )
+			.split( '' ).reverse().join( '' )
+			.replace( /^ /, '' );
+	}
+
+	return num;
+};
+
+if ( prices.length )
+{
+	prices.forEach( ( price ) => price.textContent = spaceNumber( parseInt( price.textContent )));
 }
 
 initCheckboxset();
 initCleanBtn();
 initAllBtn();
 initRemoveBtn();
+initFilterCheckboxes();
+initSearch();
+initShareBtn();
+initPrintBtn();
