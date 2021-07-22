@@ -2,6 +2,11 @@ input[type="checkbox"]
 {
 	position: absolute;
 	z-index: -1;
+
+	width: 0;
+	height: 0;
+
+	visibility: hidden;
 	
 	opacity: 0;
 }
@@ -35,7 +40,7 @@ label
 
 		content: '';
 
-		background: $clr_white;
+		background: transparent;
 
 		border: 1px solid $clr_icons_gray;
 	}

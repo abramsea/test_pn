@@ -54,11 +54,6 @@ ul.cards
 			}
 		}
 
-		&:not(.valid)
-		{
-			display: none;
-		}
-
 		&:nth-child(2n)
 		{
 			margin-right: 0;
@@ -360,6 +355,11 @@ ul.cards
 				height: 13px;
 
 				content: url(../images/icons/pin.svg);
+
+				@media screen and (max-width: 636px)
+				{
+					content: none;
+				}
 			}
 		}
 
@@ -370,6 +370,16 @@ ul.cards
 			position: absolute;
 			right: 24px;
 			bottom: 24px;
+
+			&::before
+			{
+				content: 'Добавлено '; 
+
+				@media screen and (max-width: 420px)
+				{
+					content: 'Доб. '
+				}
+			}
 		}
 
 		picture.card__plan

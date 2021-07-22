@@ -31,135 +31,162 @@
 			display: none;
 		}
 
-		.form__item
+		.form__header
 		{
-			position: relative;
+			display: flex;
+			flex-wrap: wrap;
 
-			@media screen and (max-width: 1000px)
+			width: 100%;
+
+			.form__item
 			{
-				width: 100%;
-			}
-
-			&::before
-			{
-				position: absolute;
-				top: 10px;
-				left: 8px;
-
-				width: 24px;
-				height: 24px;
-
-				content: url(../images/icons/search.svg);
-			}
-
-			input#search
-			{
-				@include font_p1;
-
-				width: 637px;
-
-				padding: calc( #{$unit} * 3 ) calc( #{$unit} * 3 ) calc( #{$unit} * 2.5 ) calc( #{$unit} * 12 );
-
-				background: $clr_white;
-
-				border: 1px solid $clr_icons_gray;
-
+				position: relative;
+	
 				@media screen and (max-width: 1000px)
 				{
 					width: 100%;
 				}
-
-				&:focus
+	
+				&::before
 				{
-					outline: none;
-					border: 1px solid $clr_red;
+					position: absolute;
+					top: 10px;
+					left: 8px;
+	
+					width: 24px;
+					height: 24px;
+	
+					content: url(../images/icons/search.svg);
+				}
+	
+				input#search
+				{
+					@include font_p1;
+	
+					width: 637px;
+	
+					padding: calc( #{$unit} * 3 ) calc( #{$unit} * 3 ) calc( #{$unit} * 2.5 ) calc( #{$unit} * 12 );
+	
+					background: transparent;
+	
+					border: 1px solid $clr_icons_gray;
+
+					@media screen and (max-width: 1280px)
+					{
+						width: 500px;
+					}
+	
+					@media screen and (max-width: 1000px)
+					{
+						width: 100%;
+					}
+	
+					&:focus
+					{
+						outline: none;
+						border: 1px solid $clr_red;
+					}
+	
+					&::placeholder
+					{
+						color: $clr_dark_gray;
+					}
+				}
+			}
+	
+			div.checkboxset
+			{
+				@media screen and (max-width: 1000px)
+				{
+					margin-top: calc( #{$unit} * 8 );
+					margin-left: 0;
 				}
 
-				&::placeholder
+				@media screen and (max-width: 636px)
 				{
-					color: $clr_dark_gray;
+					margin-top: calc( #{$unit} * 5 );
+				}
+			}
+	
+			label.checkbox_type_all
+			{
+				margin-top: calc( #{$unit} * 8 );
+			}
+	
+			button.button_type_clean
+			{
+				margin-left: calc( #{$unit} * 2.5 );
+				padding: calc( #{$unit} * 3 ) calc( #{$unit} * 8 ) calc( #{$unit} * 2.5 ) calc( #{$unit} * 3 );
+	
+				@media screen and (max-width: 1000px)
+				{
+					margin-top: calc( #{$unit} * 8 );
+					margin-right: calc( #{$unit} * 3 );
+				}
+
+				@media screen and (max-width: 636px)
+				{
+					margin-top: calc( #{$unit} * 5 );
+				}
+	
+				@media screen and (max-width: 420px)
+				{
+					margin-left: 0;
+					
 				}
 			}
 		}
 
-		div.checkboxset
-		{
-			@media screen and (max-width: 1000px)
-			{
-				margin-top: calc( #{$unit} * 8 );
-				margin-left: 0;
-			}
-		}
-
-		label.checkbox_type_all
-		{
-			margin-top: calc( #{$unit} * 8 );
-		}
-
-		button.button_type_clean
-		{
-			margin-left: calc( #{$unit} * 2.5 );
-			padding: calc( #{$unit} * 3 ) calc( #{$unit} * 8 ) calc( #{$unit} * 2.5 ) calc( #{$unit} * 3 );
-
-			@media screen and (max-width: 1280px)
-			{
-				margin-top: calc( #{$unit} * 8 );
-				margin-right: calc( #{$unit} * 3 );
-			}
-
-			@media screen and (max-width: 420px)
-			{
-				margin-left: 0;
-			}
-		}
-
-		ul.buttons
+		.form__footer
 		{
 			display: flex;
 
+			width: 100%;
 			margin-top: calc( #{$unit} * 8 );
-			margin-left: calc( #{$unit} * 3 );
 
 			@media screen and (max-width: 636px)
 			{
-				margin-left: 0;
+				margin-top: calc( #{$unit} * 5 );
 			}
 
-			@media screen and (max-width: 420px)
+			ul.buttons
 			{
+				display: flex;
+	
 				width: 100%;
-			}
-			
-			li
-			{
-				@media screen and (max-width: 420px)
+				margin-left: calc( #{$unit} * 3 );
+					
+				li
 				{
-					width: calc( 100% - ( calc( #{$unit} * 2.5 ) * 2 ) / 3 );
-				}
-
-				button.button
-				{
-					@media screen and (max-width: 420px)
+					@media screen and (max-width: 636px)
 					{
-						width: 100%;
-						height: 36px;
-						
-						font-size: 0;
-
-						&::after
+						width: calc( 100% - ( calc( #{$unit} * 2.5 ) * 2 ) / 3 );
+					}
+	
+					button.button
+					{
+						@media screen and (max-width: 636px)
 						{
-							right: 50%;
-
-							transform: translateX( 50% );
+							width: 100%;
+							height: 36px;
+							
+							font-size: 0;
+	
+							&::after
+							{
+								right: 50%;
+	
+								transform: translateX( 50% );
+							}
 						}
 					}
-				}
-
-				&:not(:last-child)
-				{
-					margin-right: calc( #{$unit} * 2.5 );
+	
+					&:not(:last-child)
+					{
+						margin-right: calc( #{$unit} * 2.5 );
+					}
 				}
 			}
-		}
+		}	
 	}
 }
