@@ -17,68 +17,71 @@
     <main>
         <section class="cart" id="cart">
             <form class="form">
-                <div class="form__item">
-                    <input id="search" name="search" placeholder="Введите ЖК / корпус / № квартиры / № паркинга" type="text">
+                <div class="form__header">
+                    <div class="form__item">
+                        <input id="search" name="search" placeholder="Введите ЖК / корпус / № квартиры / № паркинга" type="text">
+                    </div>
+    
+                    <div class="checkboxset">
+                        <div class="wrap">
+                            <div class="value" data-title="Все статусы"></div>
+                        </div>
+                        <div class="dropdown">
+                            <div class="inner">
+                                <input id="booked" value="booked" type="checkbox">
+                                <label for="booked" class="checkbox">
+                                    <span class="val">Забронировано</span>
+                                </label>
+                                <input id="sold" value="sold" type="checkbox">
+                                <label for="sold" class="checkbox">
+                                    <span class="val">Продано</span>
+                                </label>
+                                <input id="active" value="active" type="checkbox">
+                                <label for="active" class="checkbox">
+                                    <span class="val">Активно</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button type="button" class="button button_type_clean">
+                        Очистить корзину
+                    </button>     
                 </div>
-
-                <div class="checkboxset">
-					<div class="wrap">
-						<div class="value" data-title="Все статусы"></div>
-					</div>
-					<div class="dropdown">
-						<div class="inner">
-                            <input id="booked" value="booked" type="checkbox">
-							<label for="booked" class="checkbox">
-                                <span class="val">Забронировано</span>
-                            </label>
-                            <input id="sold" value="sold" type="checkbox">
-							<label for="sold" class="checkbox">
-                                <span class="val">Продано</span>
-                            </label>
-                            <input id="active" value="active" type="checkbox">
-							<label for="active" class="checkbox">
-                                <span class="val">Активно</span>
-                            </label>
-						</div>
-					</div>
-				</div>
-                
-                <button type="button" class="button button_type_clean">
-                    Очистить корзину
-                </button>
-                <input id="all" value="all" type="checkbox">
-                <label for="all" class="checkbox checkbox_type_all">
-                    <span class="val">все</span>
-                </label>
-                <ul class="buttons">
-                    <li>
-                        <button type="button" class="button button_type_pdf">
-                            Сохранить
-                        </button>
-                    </li>
-                    <li>
-                        <button type="button" class="button button_type_share">
-                            Отправить
-                        </button>
-                    </li>
-                    <li>
-                        <button type="button" class="button button_type_remove">
-                            Удалить
-                        </button>
-                    </li>
-                </ul>
+               
+                <div class="form__footer">
+                    <input id="all" value="all" type="checkbox">
+                    <label for="all" class="checkbox checkbox_type_all">
+                        <span class="val">все</span>
+                    </label>
+                    <ul class="buttons">
+                        <li>
+                            <button type="button" class="button button_type_pdf">
+                                Сохранить
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="button button_type_share">
+                                Отправить
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="button button_type_remove">
+                                Удалить
+                            </button>
+                        </li>
+                    </ul>
+                </div>
             </form>
 
             <ul class="cards">
-                <li class="card valid" v-for="apartment in apartments" v-if="apartment.enabled">
+                <li class="card" v-for="apartment in apartments" v-if="apartment.enabled">
 
                     <input :id="apartment.id" :value="apartment.id" type="checkbox">
                     <label :for="apartment.id" class="checkbox"></label>
 
                     <div class="card__main-info">
-                        <span class="card__price">
-                            {{ apartment.price }}
-                        </span>
+                        <span class="card__price">{{ apartment.price }}</span>
 
                         <span class="card__type card__type_apartment" v-if="apartment.type === 'apartment'" data-type="Квартира">
                             Квартира
@@ -91,15 +94,13 @@
                             </span>
                         </span>
 
-
-
-                        <p class="card__complex" :data-complex="apartment.complex">
+                        <p class="card__complex">
                             {{ apartment.complex }}, <span class="card__queue">{{ apartment.queue }}</span>
                         </p>
                     </div>
 
                     <div class="card__props">
-                        <span class="card__prop card__number" :data-number="apartment.number">
+                        <span class="card__prop card__number">
                             {{ apartment.number }}
                             <span v-if="apartment.rooms" class="card__rooms">
                                 {{ apartment.rooms }}
@@ -117,24 +118,24 @@
                         {{ apartment.location }}
                     </p>
                     
-                    <span class="card__status card__status_type_entity" v-if="apartment.status === 'entity'" :data-status="apartment.status" :data-active="apartment.active">
+                    <span class="card__status card__status_type_entity" v-if="apartment.status === 'entity'">
                         Уступка от юр.лица
                     </span>
 
-                    <span class="card__status card__status_type_person" v-if="apartment.status === 'person'" :data-status="apartment.status" :data-active="apartment.active">
+                    <span class="card__status card__status_type_person" v-if="apartment.status === 'person'">
                         Уступка от физ.лица
                     </span>
 
-                    <span class="card__status card__status_type_booked" v-if="apartment.status === 'booked'" :data-status="apartment.status" :data-active="apartment.active">
+                    <span class="card__status card__status_type_booked" v-if="apartment.status === 'booked'">
                         Забронировано
                     </span>
 
-                    <span class="card__status card__status_type_sold" v-if="apartment.status === 'sold'" :data-status="apartment.status" :data-active="apartment.active">
+                    <span class="card__status card__status_type_sold" v-if="apartment.status === 'sold'">
                         Продано
                     </span>
 
                     <span class="card__added">
-                       Добавлено {{ apartment.added }}
+                       {{ apartment.added }}
                     </span>
 
                     <picture class="card__plan">

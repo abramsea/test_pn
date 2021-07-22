@@ -70,7 +70,6 @@ const app = new Vue({
 })
 const cardsList = document.querySelector( 'ul.cards' );
 const cards = cardsList.querySelectorAll( 'li' );
-const prices = document.querySelectorAll( 'span.card__price' );
 
 const initCheckboxset = () => {
 	const checkboxsets = document.querySelectorAll( 'div.checkboxset' );
@@ -137,7 +136,12 @@ const initRemoveBtn = () => {
 	removeBtn.addEventListener( 'click', removeCheckedCards ); 
 }
 
-const resetFilter = () => cards.forEach( card => card.classList.add( 'valid' ));
+const resetFilter = () => {
+	for ( let apartment in app.apartments )
+	{
+		app.apartments[apartment].enabled = true;
+	}
+};
 
 const initFilterCheckboxes = () => {
 	const filterCheckboxes = document.querySelectorAll( 'div.inner > input[type="checkbox"]' );
@@ -145,16 +149,19 @@ const initFilterCheckboxes = () => {
 	filterCheckboxes.forEach( ( input ) => {
 
 		const filter = ( value ) => {
-			cards.forEach( ( card ) => {
-
-				card.classList.remove( 'valid' );
-
-				if ( card.querySelector( '.card__status' ).getAttribute( 'data-status' ) === value || 
-					card.querySelector( '.card__status' ).getAttribute( 'data-active' ) === value )
+			for ( let apartment in app.apartments )
+			{
+				if ( app.apartments[apartment].active === value || app.apartments[apartment].status === value )
 				{
-					card.classList.add( 'valid' );
+					app.apartments[apartment].enabled = true;
 				}
-			});
+				else
+				{
+					app.apartments[apartment].enabled = false;
+
+					// add multichoose
+				}
+			}
 		}
 		
 		input.addEventListener( 'change', ( evt ) => {
@@ -175,17 +182,26 @@ const initSearch = () => {
 	const searchInput = form.querySelector( 'input#search' );
 
 	const filter = () => {
-		cards.forEach( ( card ) => {
 
-			card.classList.remove( 'valid' );
+		for ( let apartment in app.apartments )
+		{
+			const complex = app.apartments[apartment].complex;
+			const queue = app.apartments[apartment].queue;
+			const number = app.apartments[apartment].number;
 
-			if ( card.querySelector( '.card__complex' ).textContent.toLowerCase().match( searchInput.value.toLowerCase() ) || 
-				 card.querySelector( '.card__queue' ).textContent.toLowerCase().match( searchInput.value.toLowerCase() ) || 
-				 card.querySelector( '.card__number' ).textContent.toLowerCase().match( searchInput.value.toLowerCase() ))
+			if ( complex.match( searchInput.value.toLowerCase()) || 
+				queue.match( searchInput.value.toLowerCase()) || 
+				number.match( searchInput.value.toLowerCase()))
 			{
-				card.classList.add( 'valid' );
+				app.apartments[apartment].enabled = true;
 			}
-		});
+			else
+			{
+				app.apartments[apartment].enabled = false;
+
+				// add multichoose + nothing chosen
+			}
+		}
 	}
 
 	searchInput.addEventListener( 'keyup', filter );
@@ -225,13 +241,12 @@ const initPrintBtn = () => {
 	const printBtn = document.querySelector( '.button_type_pdf' );
 
 	const print = () => {
+		cards.forEach( card => card.classList.remove( 'printable' ));
 		const checkedInputs = document.querySelectorAll( 'li.card > input[type="checkbox"]:checked' );
 
 		if ( checkedInputs.length )
 		{
-			checkedInputs.forEach( ( input ) => {
-				input.closest( 'li.card' ).classList.add( 'printable' );
-			});
+			checkedInputs.forEach( input => input.closest( 'li.card' ).classList.add( 'printable' ));
 
 			window.print();
 		}
@@ -242,7 +257,6 @@ const initPrintBtn = () => {
 	}
 
 	printBtn.addEventListener( 'click', print );
-
 }
 
 const spaceNumber = ( num ) => {
@@ -262,11 +276,14 @@ const spaceNumber = ( num ) => {
 	return num;
 };
 
-if ( prices.length )
-{
-	prices.forEach( ( price ) => price.textContent = spaceNumber( parseInt( price.textContent )));
+const makeSpaceNumber = () => {
+	for ( let apartment in app.apartments )
+	{
+		app.apartments[apartment].price = spaceNumber( app.apartments[apartment].price );
+	}
 }
 
+makeSpaceNumber();
 initCheckboxset();
 initCleanBtn();
 initAllBtn();
