@@ -119,9 +119,9 @@ const initSearch = () => {
 			const queue = app.apartments[apartment].queue;
 			const number = app.apartments[apartment].number;
 
-			if ( complex.match( searchInput.value.toLowerCase()) || 
-				queue.match( searchInput.value.toLowerCase()) || 
-				number.match( searchInput.value.toLowerCase()))
+			if ( complex.toLowerCase().match( searchInput.value.toLowerCase() ) || 
+				queue.toLowerCase().match( searchInput.value.toLowerCase() ) || 
+				number.toLowerCase().match( searchInput.value.toLowerCase() ))
 			{
 				app.apartments[apartment].enabled = true;
 			}
